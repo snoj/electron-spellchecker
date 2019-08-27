@@ -9,7 +9,7 @@
     height: 100vh;
     width: 100vw;
   }
-  
+
   #ta {
     flex: 1 1 auto;
   }
@@ -18,8 +18,13 @@
 <body>
   <div id="container">
     <textarea id="ta"></textarea>
+    <textarea id="ta1"></textarea>
+    <textarea id="ta2"></textarea>
+    <textarea id="ta3"></textarea>
+    <textarea id="ta4"></textarea>
+    <textarea id="ta5"></textarea>
 
-    <webview src="https://gist.github.com" style="width: 100%; height: 600px" preload="./preload.js"></webview>>
+    <!--<webview src="https://gist.github.com" style="width: 100%; height: 600px" preload="./preload.js"></webview>>-->
 
     <div id="info">
       <h3>Type some text!</h3>
@@ -28,25 +33,7 @@
       src="http://pixel.nymag.com/imgs/daily/following/2016/05/12/12376681_1063072477089016_3145722177588178860_n.nocrop.w536.h2147483647.2x.jpg" />
     </div>
   </div>
-  
-  <script>
-  import SpellCheckHandler from '../src/spell-check-handler';
-  import ContextMenuListener from '../src/context-menu-listener';
-  import ContextMenuBuilder from '../src/context-menu-builder';
-  
-  window.spellCheckHandler = new SpellCheckHandler();
-  window.spellCheckHandler.attachToInput();
-  window.spellCheckHandler.currentSpellcheckerChanged.subscribe(() => {
-    document.getElementById('detectedLang').innerText = `Current language is ${window.spellCheckHandler.currentSpellcheckerLanguage}`;
-  });
-  
-  window.spellCheckHandler.provideHintText('This is probably the language that you want to check in');
-  window.spellCheckHandler.autoUnloadDictionariesOnBlur();
-  
-  let contextMenuBuilder = new ContextMenuBuilder(window.spellCheckHandler);
-  let contextMenuListener = new ContextMenuListener(async (info) => {
-    await contextMenuBuilder.showPopupMenu(info);
-  });
-  </script>
+
+  <script type="module" src="es6://./app.js"></script>
 </body>
 </html>
